@@ -41,6 +41,7 @@ LinkedList::~LinkedList() {
 bool LinkedList::insert(char* data, const size_t& dataLen) {
     if (head_ == nullptr) {
         head_ = new Node(data, dataLen, nullptr);
+        ++size_;
         return true;
     }
 
@@ -54,9 +55,11 @@ bool LinkedList::insert(char* data, const size_t& dataLen) {
         if (compareResult < 0) {
             if (prevNode == nullptr) {
                 head_ = new Node(data, dataLen, node);
+                ++size_;
                 return true;
             }
             prevNode->nextNode = new Node(data, dataLen, node);
+            ++size_;
             return true;
         }
         prevNode = node;
@@ -75,8 +78,13 @@ bool LinkedList::remove(char* data) {
         if (compare(node->data, data) == 0) {
             if (prevNode != nullptr) {
                 prevNode->nextNode = node->nextNode;
+                delete node;
+                --size_;
+                return true;
             }
             delete node;
+            head_ = nullptr;
+            --size_;
             return true;
         }
         prevNode = node;

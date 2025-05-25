@@ -94,19 +94,23 @@ void testInsertCollision() {
     std::cout << "Insert hello:\n";
     table.insert("hello", 5);
     std::cout << table;
+    std::cout << "\n";
 
 
-    std::cout << "Insert world\n";
+    std::cout << "Insert world:\n";
     table.insert("world", 5);
     std::cout << table;
+    std::cout << "\n";
 
     std::cout << "Insert apple:\n";
     table.insert("apple", 5);
     std::cout << table;
+    std::cout << "\n";
 
     std::cout << "Insert banana:\n";
     table.insert("banana", 6);
     std::cout << table;
+    std::cout << "\n";
 
     std::cout << "Collisions:\n";
     table.printCollisions(std::cout);
@@ -205,7 +209,7 @@ void testRemoveDuplicates() {
 
 void testPrintAllCollisions() {
     std::cout << "###############\n";
-    std::cout << "Test print collisions\n";
+    std::cout << "Test print all collisions\n";
     HashTable table(3);
     table.insert("Moscow", 6);
     table.insert("London", 6);
@@ -218,7 +222,7 @@ void testPrintAllCollisions() {
     std::cout << "Madrid hash: " << table.hash("Madrid") << "\n";
     std::cout << "Berlin hash: " << table.hash("Berlin") << "\n";
     std::cout << "\n";
-    std::cout << "Collision: Moscow and Madrid\n";
+    std::cout << "Collision expected: Moscow and Madrid\n";
     std::cout << "\n";
     std::cout << "Call printCollisions():\n";
     table.printCollisions(std::cout);
@@ -245,9 +249,9 @@ void testPrintCertainCollisions() {
     std::cout << "Paris hash: " << table.hash("Paris") << "\n";
 
     std::cout << "\n";
-    std::cout << "Collision: Moscow and Madrid. hash = 2\n";
-    std::cout << "Collision: Berlin and Paris. hash = 1\n";
-    std::cout << "Collision: London and Roma. hash = 0\n";
+    std::cout << "Collision expected: Moscow and Madrid. hash = 2\n";
+    std::cout << "Collision expected: Berlin and Paris. hash = 1\n";
+    std::cout << "Collision expected: London and Roma. hash = 0\n";
 
     std::cout << "\n";
     std::cout << "Call printCollisions(2):\n";
@@ -272,6 +276,5 @@ void myTests() {
 
 int main() {
     myTests();
-
     return 0;
 }
