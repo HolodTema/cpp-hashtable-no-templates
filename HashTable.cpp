@@ -6,6 +6,20 @@ HashTable::HashTable(const size_t& size):
     table_ = new LinkedList[size];
 }
 
+HashTable::HashTable(HashTable&& other) noexcept:
+    size_(other.size_),
+    table_(other.table_)
+{
+    other.table_ = nullptr;
+}
+
+HashTable& HashTable::operator=(HashTable&& other) noexcept {
+    if (this != &other) {
+        swap(other);
+    }
+    return *this;
+}
+
 HashTable::~HashTable() {
     delete[] table_;
     table_ = nullptr;
@@ -24,7 +38,6 @@ bool HashTable::remove(char* key) {
 bool HashTable::search(char* key) const {
     return table_[hash(key)].search(key);
 }
-
 
 void HashTable::printCollisions(std::ostream& os, const unsigned int& hashValue) const {
     os << table_[hashValue] << '\n';
@@ -53,4 +66,9 @@ std::ostream& operator<<(std::ostream& os, const HashTable& hashTable) {
     }
     os << '\n';
     return os;
+}
+
+void HashTable::swap(HashTable& other) noexcept {
+    std::swap(size_, other.size_);
+    std::swap(table_, other.table_);
 }

@@ -11,11 +11,11 @@ public:
 
     HashTable(const HashTable& other) = delete;
 
-    HashTable(const HashTable&& other) = delete;
+    HashTable(HashTable&& other) noexcept;
 
     HashTable& operator=(const HashTable& other) = delete;
 
-    HashTable& operator=(const HashTable&& other) = delete;
+    HashTable& operator=(HashTable&& other) noexcept;
 
     ~HashTable();
 
@@ -36,6 +36,8 @@ public:
 private:
     size_t size_;
     LinkedList* table_;
+
+    void swap(HashTable& other) noexcept;
 };
 
 #endif //HASH_TABLE_H

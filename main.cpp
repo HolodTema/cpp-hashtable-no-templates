@@ -1,6 +1,15 @@
 #include <iostream>
 #include "HashTable.h"
 
+HashTable getRvalueRef() {
+    HashTable hashTable(5);
+    hashTable.insert("Mint", 4);
+    hashTable.insert("Fedora", 6);
+    hashTable.insert("Debian", 6);
+    hashTable.insert("Ubuntu", 6);
+    return hashTable;
+}
+
 void testTableCreation() {
     std::cout << "###############\n";
     std::cout << "Test table creation\n";
@@ -342,6 +351,42 @@ void testSearch() {
     std::cout << "###############\n";
 }
 
+
+void testMoveConstructor() {
+    std::cout << "###############\n";
+    std::cout << "test move constructor\n";
+    HashTable hashTable(getRvalueRef());
+    std::cout << "Created table via move constructor:\n";
+    std::cout << hashTable;
+    std::cout << "\n";
+    std::cout << "Insert something to this table:\n";
+    hashTable.insert("Gentoo", 6);
+    hashTable.insert("AstraLinux", 10);
+    std::cout << hashTable;
+    std::cout << "###############\n";
+}
+
+void testMoveOperator() {
+    std::cout << "###############\n";
+    std::cout << "test move assignment operator\n";
+    HashTable hashTable(5);
+    hashTable.insert("Moscow", 6);
+    hashTable.insert("London", 6);
+    hashTable.insert("Madrid", 6);
+    std::cout << "Created hashTable (default constructor) with some keys inside:\n";
+    std::cout << hashTable;
+    std::cout << "\n";
+    std::cout << "use move assignment operator:\n";
+    hashTable = getRvalueRef();
+    std::cout << hashTable;
+    std::cout << "\n";
+    std::cout << "Insert something to table after move operator:\n";
+    hashTable.insert("key1", 4);
+    hashTable.insert("key2", 4);
+    std::cout << hashTable;
+    std::cout << "###############\n";
+}
+
 void myTests() {
     testTableCreation();
     testInsert();
@@ -354,6 +399,8 @@ void myTests() {
     testDifferentMemoryTypes();
     testDifferentMemoryTypesDuplicates();
     testSearch();
+    testMoveConstructor();
+    testMoveOperator();
 }
 
 int main() {
