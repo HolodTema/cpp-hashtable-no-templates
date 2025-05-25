@@ -23,6 +23,8 @@ public:
 
     bool remove(char* key);
 
+    bool search(char* key) const;
+
     void printCollisions(std::ostream& os, const unsigned int& hashValue) const;
 
     void printCollisions(std::ostream& os) const;

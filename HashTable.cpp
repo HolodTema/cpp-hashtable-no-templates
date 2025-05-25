@@ -21,6 +21,11 @@ bool HashTable::remove(char* key) {
     return isRemoved;
 }
 
+bool HashTable::search(char* key) const {
+    return table_[hash(key)].search(key);
+}
+
+
 void HashTable::printCollisions(std::ostream& os, const unsigned int& hashValue) const {
     os << table_[hashValue] << '\n';
 }

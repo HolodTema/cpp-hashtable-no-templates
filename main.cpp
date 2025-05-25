@@ -301,6 +301,47 @@ void testDifferentMemoryTypesDuplicates() {
     std::cout << "###############\n";
 }
 
+void testSearch() {
+    std::cout << "###############\n";
+    std::cout << "Test search\n";
+    HashTable table(10);
+    table.insert("Moscow", 6);
+    table.insert("London", 6);
+    table.insert("Madrid", 6);
+    table.insert("Berlin", 6);
+    table.insert("Paris", 5);
+    table.insert("Oslo", 4);
+    std::cout << "Created table with keys inside:\n";
+    std::cout << table;
+    std::cout << "\n";
+
+    std::cout << "Search Moscow\n";
+    bool isFound = table.search("Moscow");
+    std::cout << "isFound = " << isFound << '\n';
+    std::cout << "\n";
+
+    std::cout << "Search Berlin\n";
+    isFound = table.search("Berlin");
+    std::cout << "isFound = " << isFound << '\n';
+    std::cout << "\n";
+
+    std::cout << "Search Osaka\n";
+    isFound = table.search("Osaka");
+    std::cout << "isFound = " << isFound << '\n';
+    std::cout << "\n";
+
+    std::cout << "Search Oslo\n";
+    isFound = table.search("Oslo");
+    std::cout << "isFound = " << isFound << '\n';
+    std::cout << "\n";
+
+    std::cout << "Search Rostov\n";
+    isFound = table.search("Rostov");
+    std::cout << "isFound = " << isFound << '\n';
+
+    std::cout << "###############\n";
+}
+
 void myTests() {
     testTableCreation();
     testInsert();
@@ -312,6 +353,7 @@ void myTests() {
     testPrintCertainCollisions();
     testDifferentMemoryTypes();
     testDifferentMemoryTypesDuplicates();
+    testSearch();
 }
 
 int main() {
