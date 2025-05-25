@@ -23,7 +23,10 @@ LinkedList& LinkedList::operator=(const LinkedList& other) {
 }
 
 LinkedList& LinkedList::operator=(LinkedList&& other) noexcept {
-    swap(other);
+    if (this != &other) {
+        swap(other);
+    }
+    return *this;
 }
 
 LinkedList::~LinkedList() {
@@ -44,13 +47,13 @@ bool LinkedList::insert(char* data, const size_t& dataLen) {
     Node* prevNode = nullptr;
     Node* node = head_;
     while (node != nullptr) {
-        const int compareResult = compare(node->data, data);
+        const int compareResult = compare(data, node->data);
         if (compareResult == 0) {
             return false;
         }
         if (compareResult < 0) {
             if (prevNode == nullptr) {
-                prevNode = new Node(data, dataLen, node);
+                head_ = new Node(data, dataLen, node);
                 return true;
             }
             prevNode->nextNode = new Node(data, dataLen, node);
@@ -59,7 +62,10 @@ bool LinkedList::insert(char* data, const size_t& dataLen) {
         prevNode = node;
         node = node->nextNode;
     }
-    return false;
+
+    Node* newNode = new Node(data, dataLen, nullptr);
+    prevNode->nextNode = newNode;
+    return true;
 }
 
 bool LinkedList::remove(char* data) {
@@ -97,10 +103,10 @@ size_t LinkedList::getSize() const {
 std::ostream& operator<<(std::ostream& os, const LinkedList& list) {
     LinkedList::Node* node = list.head_;
     while (node != nullptr) {
-        os << *(node->data) << " ";
+        os << node->data << " ";
         node = node->nextNode;
     }
-    os << '\n';
+    return os;
 }
 
 void LinkedList::swap(LinkedList& other) noexcept {

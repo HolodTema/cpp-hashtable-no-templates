@@ -2,11 +2,12 @@
 #define HASH_TABLE_H
 
 #include <iostream>
+#include "LinkedList.h"
 
 class HashTable {
 public:
 
-    HashTable();
+    explicit HashTable(const size_t& size);
 
     HashTable(const HashTable& other) = delete;
 
@@ -18,7 +19,7 @@ public:
 
     ~HashTable();
 
-    bool insert(char* key);
+    bool insert(char* key, const size_t& keyLen);
 
     bool remove(char* key);
 
