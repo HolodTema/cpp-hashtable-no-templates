@@ -263,6 +263,24 @@ void testPrintCertainCollisions() {
     std::cout << "###############\n";
 }
 
+void testDifferentMemoryTypes() {
+    std::cout << "###############\n";
+    std::cout << "test different memory types of keys inside hashTable:\n";
+    std::cout << "Created empty table with size = 5\n";
+    HashTable table(5);
+    std::cout << table;
+    std::cout << "Insert string-literal (static memory) to table:\n";
+    table.insert("Moscow", 6);
+    std::cout << table;
+    std::cout << "\n";
+
+    std::cout << "Insert char-array from auto-memory:\n";
+    char ch[] = {'T', 'o', 'k', 'y', 'o'};
+    table.insert(ch, 5);
+    std::cout << table;
+    std::cout << "###############\n";
+}
+
 void myTests() {
     testTableCreation();
     testInsert();
@@ -272,6 +290,7 @@ void myTests() {
     testRemoveDuplicates();
     testPrintAllCollisions();
     testPrintCertainCollisions();
+    testDifferentMemoryTypes();
 }
 
 int main() {
