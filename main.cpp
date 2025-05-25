@@ -281,6 +281,26 @@ void testDifferentMemoryTypes() {
     std::cout << "###############\n";
 }
 
+void testDifferentMemoryTypesDuplicates() {
+    std::cout << "###############\n";
+    std::cout << "test different memory types keys duplicates:\n";
+    std::cout << "Created empty table with size = 5\n";
+    HashTable table(5);
+    std::cout << table;
+    std::cout << "Insert string-literal (static memory) to table:\n";
+    bool isInserted = table.insert("Moscow", 6);
+    std::cout << table;
+    std::cout << "IsInserted: " << isInserted << '\n';
+    std::cout << "\n";
+
+    std::cout << "Insert the same char-array key from auto-memory:\n";
+    char ch[] = {'M', 'o', 's', 'c', 'o', 'w'};
+    isInserted = table.insert(ch, 5);
+    std::cout << table;
+    std::cout << "IsInserted: " << isInserted << '\n';
+    std::cout << "###############\n";
+}
+
 void myTests() {
     testTableCreation();
     testInsert();
@@ -291,6 +311,7 @@ void myTests() {
     testPrintAllCollisions();
     testPrintCertainCollisions();
     testDifferentMemoryTypes();
+    testDifferentMemoryTypesDuplicates();
 }
 
 int main() {
